@@ -1,0 +1,57 @@
+<?php
+// Пожалуйсто проверте мое домашнее задание которое вы задали на уроке 23-01-2020 числа, спасибо! 
+$host = 'localhost';
+$database = 'mydb';
+$user = 'root';
+$password = '';
+$firstname='first_name';
+$lastname='last_name';
+$email='email';
+$id='id';
+
+//функция проверки соединения
+function connect($host, $user, $password, $database)
+{
+$link = mysqli_connect($host, $user, $password, $database) 
+    or die("Ошибка " . mysqli_error($link));
+$query ="SELECT * FROM students";
+$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+if($result) echo "Connected successfully!<br>";
+mysqli_close($link);
+}
+
+//функция ввода данных
+function insert($host, $user, $password, $database, $firstname, $lastname, $email)
+{
+$link = mysqli_connect($host, $user, $password, $database) 
+    or die("Ошибка " . mysqli_error($link)); 
+$sql = "INSERT INTO students (first_name, last_name, email) VALUES ('$firstname', '$lastname', '$email')";
+if (mysqli_query($link, $sql)) echo "Data uploaded!<br>";
+    else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($link);
+}
+mysqli_close($link);
+}
+
+//функция замены данных
+function update($host, $user, $password, $database, $firstname, $lastname, $email, $id)
+{
+$link = mysqli_connect($host, $user, $password, $database) 
+    or die("Ошибка " . mysqli_error($link)); 
+$sql = "UPDATE students SET first_name='$firstname', last_name='$lastname', email='$email' WHERE id='$id'";
+if (mysqli_query($link, $sql)) echo "Data updated!<br>";
+    else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($link);
+}
+mysqli_close($link);    
+}
+
+//Каждая функция работает по отдельности, вы можете вызвать ту функцию которое вам нужно:
+
+//проверить соединение:
+connect($host, $user, $password, $database);
+//ввести данные:
+insert($host, $user, $password, $database,'Zafar','Samadov','zaf@mail.ru');
+//заменить данные по id строки: 
+update($host, $user, $password, $database,'Ali','Alijon','ali@mail.ru','66');
+?>
