@@ -1,0 +1,17 @@
+//Здесь второе дом. задание с именами 
+<?php
+$student = [
+     ['Ivanov','Petr','Vasilyevich'],
+     ['Rustamov','Suhrob','Olimovich'],
+     ['Firdavs','Olimi','Olimjon'],
+    ];   
+
+function fio($student)
+{ 
+    $a = $student[1]{0};
+    $b = $student[2]{0};
+    echo "$student[0] $a. $b.";  
+}
+
+fio($student[0]);
+?>
